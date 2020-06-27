@@ -1,0 +1,36 @@
+{
+	"AWSEBDockerrunVersion": 2,
+	"containerDefinitions": [
+		{
+			"name": "client",
+			"image": "musthafakdml/complex-app-client",
+			"hostname": "client",
+			"essential": false
+		},
+		{
+			"name": "server",
+			"image": "musthafakdml/complex-app-server",
+			"hostname": "api",
+			"essential": false
+		},	
+		{
+			"name": "worker",
+			"image": "musthafakdml/complex-app-worker",
+			"hostname": "worker",
+			"essential": false
+		},
+		{
+			"name": "nginx",
+			"image": "musthafakdml/complex-app-nginx",
+			"hostname": "nginx",
+			"esssential": true,
+			"portMappings": [
+				{
+					"hostPort": 80,
+					"containerPort": 80
+				}
+			],
+			"links": ["server", "client"]
+		}
+	]
+}
